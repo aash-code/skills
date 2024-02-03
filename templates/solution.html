@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ problem_name }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/prism.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/solution.css')}}"
+    />
+  </head>
+  <body>
+    <header><h1>{{ problem_name }}</h1></header>
+    <header><h3>Description:</h3></header>
+    <p>{{ description }}</p>
+    <header><h3>Solution:</h3></header>
+    <div class="box">
+      <pre><code class="language-python">{{ code_block }}</code></pre>
+    </div>
+    <header><h3>Test Cases:</h3></header>
+    <table class="pure-table pure-table-bordered">
+      <thead>
+        <tr>
+          <th>Input</th>
+          <th>Expected</th>
+          <th>Actual</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for test_case in testcases %}
+        <tr>
+          <td>{{ test_case.input }}</td>
+          <td>{{ test_case.expected }}</td>
+          <td>{{ test_case.actual }}</td>
+          <td>{{ test_case.status() }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <script src="{{ url_for('static', filename='css/prism.js') }}"></script>
+  </body>
+</html>
